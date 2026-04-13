@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>所有投票題目</h1>
+    <ul>
+    {% for question in question_list %}
+        <li style="margin-bottom: 20px;">
+            <!-- 使用 forloop.counter 與超連結 -->
+            <h3>{{ forloop.counter }}. <a href="{% url 'question_detail' question.pk %}">{{ question.title }}</a></h3>
+            <p>發布時間: {{ question.pub_date }}</p>
+            <p>{{ question.description }}</p>
+            <p>狀態: {% if question.is_open %}開放中{% else %}已關閉{% endif %}</p>
+            
+            <!-- 巢狀迴圈：透過 ForeignKey 的反向關聯 (choice_set) 取出選項 -->
+            <ol>
+            {% for choice in question.choice_set.all %}
+                <li>{{ choice.choice_text }} - {{ choice.votes }} 票</li>
+            {% empty %}
+                <li>目前尚未建立選項。</li>
+            {% endfor %}
+            </ol>
+        </li>
+    {% empty %}
+        <li>目前沒有任何投票活動。</li>
+    {% endfor %}
+    </ul>
+{% endblock %}

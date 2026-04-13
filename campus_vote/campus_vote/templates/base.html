@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>校園投票系統</title></head>
+<body>
+    <nav>
+        <a href="{% url 'home' %}">首頁</a> | 
+        <a href="{% url 'stats' %}">統計頁</a>
+    </nav>
+    <hr>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

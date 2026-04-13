@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head><title>Campus Info</title></head>
+<body>
+    <nav>
+        <!-- 必須使用 named URL -->
+        <a href="{% url 'home' %}">Home</a> | 
+        <a href="{% url 'clubs' %}">Clubs</a> | 
+        <a href="{% url 'schedule' %}">Schedule</a> | 
+        <a href="{% url 'faq' %}">FAQ</a> | 
+        <a href="{% url 'about' %}">About</a>
+    </nav>
+    <hr>
+    {% block content %}
+    {% endblock %}
+    
+    {% comment %} 這是隱藏的註解，符合語法要求 {% endcomment %}
+    <footer>Current Date: {% now "DATETIME_FORMAT" %}</footer>
+</body>
+</html>

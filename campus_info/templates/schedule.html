@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Weekly Schedule</h1>
+    <!-- 第1層迴圈：每天 -->
+    {% for day_plan in schedule %}
+        <h3>Day {{ forloop.counter }}: {{ day_plan.day }}</h3>
+        <ul>
+        <!-- 第2層迴圈：每個時段 -->
+        {% for slot in day_plan.slots %}
+            <li><strong>{{ slot.time }}</strong>
+                <ul>
+                <!-- 第3層迴圈：每個活動 -->
+                {% for event in slot.events %}
+                    <li>{{ event }}</li>
+                {% endfor %}
+                </ul>
+            </li>
+        {% empty %}
+            <li>No slots planned for today.</li>
+        {% endfor %}
+        </ul>
+    {% endfor %}
+{% endblock %}

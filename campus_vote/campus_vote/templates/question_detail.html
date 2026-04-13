@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>{{ question.title }}</h2>
+    <p>發布時間: {{ question.pub_date }}</p>
+    <p>{{ question.description }}</p>
+    <p>狀態: {% if question.is_open %}開放中{% else %}已關閉{% endif %}</p>
+    <ol>
+    {% for choice in question.choice_set.all %}
+        <li>{{ choice.choice_text }} - {{ choice.votes }} 票</li>
+    {% empty %}
+        <li>目前沒有選項。</li>
+    {% endfor %}
+    </ol>
+{% endblock %}

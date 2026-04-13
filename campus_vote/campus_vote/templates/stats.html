@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>統計資訊</h1>
+    <ul>
+        <li>問題總數: {{ total_questions }}</li>
+        <li>選項總數: {{ total_choices }}</li>
+        <li>開放中的問題數: {{ open_questions }}</li>
+    </ul>
+
+    <h2>各題最高票選項</h2>
+    <ul>
+    {% for item in highest_votes %}
+        <li>
+            <strong>{{ item.question.title }}</strong><br>
+            最高票: 
+            {% if item.top_choice %}
+                {{ item.top_choice.choice_text }} ({{ item.top_choice.votes }} 票)
+            {% else %}
+                尚無選項
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

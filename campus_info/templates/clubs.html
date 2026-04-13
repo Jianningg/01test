@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Clubs Directory</h1>
+    <!-- 使用 |length 計算數量 -->
+    <p>Total clubs: {{ clubs_data|length }}</p>
+    {% for club in clubs_data %}
+        <div style="border:1px solid #000; margin-bottom:10px; padding:10px;">
+            <!-- 使用 |title 讓首字母大寫 -->
+            <h2>{{ club.name|title }}</h2>
+            <p>Advisor: {{ club.advisor }}</p>
+            <ul>
+            {% for officer in club.officers %}
+                <li>
+                    {{ officer }}
+                    <!-- 使用 forloop.first -->
+                    {% if forloop.first %} (President) {% endif %}
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+{% endblock %}
